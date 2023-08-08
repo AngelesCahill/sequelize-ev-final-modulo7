@@ -1,6 +1,4 @@
-const {
-    DataTypes
-} = require("sequelize");
+const { DataTypes } = require("sequelize");
 const sequelize = require("../config/db.config");
 
 // Creación de la tabla user
@@ -16,12 +14,13 @@ const User = sequelize.define(
             allowNull: false,
         },
         lastname: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
         },
         email: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true,
             validate: {
                 is: /\S+@\S+\.\S+/,
             },
@@ -29,9 +28,6 @@ const User = sequelize.define(
     },
     {
         timestamps: true,
-        paranoid: false,
-        underscored: true,
-        freezeTableName: true,
         tableName: "user",
     }
 );

@@ -1,5 +1,5 @@
-const Bootcamp = require("../model/bootcamp");
-const sequelize = require("../config/db.config");
+const Bootcamp = require("../app/models/bootcamp.model");
+const sequelize = require("../app/config/db.config");
 
 const bootcamps = [
     {
@@ -21,7 +21,7 @@ const bootcamps = [
 
 (async () => {
     try {
-        await bootcamp.bulkCreate(bootcamps, {
+        await Bootcamp.bulkCreate(bootcamps, {
             validate: true,
         });
     } catch (error) {

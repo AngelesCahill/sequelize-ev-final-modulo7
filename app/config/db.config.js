@@ -1,6 +1,4 @@
-const {
-    Sequelize
-} = require("sequelize");
+const { Sequelize } = require("sequelize");
 require("dotenv").config();
 
 const sequelize = new Sequelize(
@@ -15,6 +13,10 @@ const sequelize = new Sequelize(
             min: 0,
             acquire: Number(process.env.PG_CONNECTIONTIMEOUTMILLIS),
             idle: Number(process.env.PG_IDLETIMEOUTMILLIS),
+        },
+        define: {
+            freezeTableName: true,
+            underscored: true,
         },
     }
 );

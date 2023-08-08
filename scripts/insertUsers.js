@@ -1,5 +1,5 @@
-const User = require("../model/user");
-const sequelize = require("../config/db.config");
+const User = require("../app/models/user.model");
+const sequelize = require("../app/config/db.config");
 
 const users = [
     {
@@ -26,7 +26,7 @@ const users = [
 
 (async () => {
     try {
-        await user.bulkCreate(users, {
+        await User.bulkCreate(users, {
             validate: true
         });
     } catch (error) {
