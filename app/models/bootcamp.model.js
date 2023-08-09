@@ -36,4 +36,6 @@ const Bootcamp = sequelize.define(
   }
 );
 
+
+
 module.exports = Bootcamp;

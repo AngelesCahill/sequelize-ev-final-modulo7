@@ -1,6 +1,6 @@
 // Para importar el modelo completo
 const User = require("./user.model");
-const Bootcamp = require("./Bootcamp");
+const Bootcamp = require("./bootcamp.model");
 
 User.hasMany(Bootcamp, {
   as: "bootcamp",
