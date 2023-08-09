@@ -3,9 +3,7 @@ const { User } = require("../models");
 
 const findAllUsers = async () => {
   try {
-    const usuarios = User.findAll({
-      include: ["bootcamp"],
-    });
+    const usuarios = User.findAll();
     console.log(
       `Se han encontrado los usuarios ${JSON.stringify(usuarios, null, 4)}`
     );
@@ -34,9 +32,7 @@ const createUser = async (user) => {
 
 const findUserById = async (userId) => {
   try {
-    const usuario = await User.findByPk(userId, {
-      include: ["bootcamp"],
-    });
+    const usuario = await User.findByPk(userId);
     console.log(
       `Se ha encontrado el usuario ${JSON.stringify(usuario, null, 4)}`
     );

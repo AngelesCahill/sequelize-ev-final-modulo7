@@ -2,9 +2,7 @@ const { Bootcamp } = require("../models");
 
 const findAllBootcamps = async () => {
   try {
-    const bootcamps = await Bootcamp.findAll({
-      include: ["user"],
-    });
+    const bootcamps = await Bootcamp.findAll();
     console.log(
       `Se han encontrado los siguientes bootcamps ${JSON.stringify(bootcamps, null, 4)}`
     );
@@ -32,9 +30,7 @@ const createBootcamp = async (bootcamps) => {
 
 const findBootcampById = async (bootcampId) => {
   try {
-    const boot = await Bootcamp.findByPk(bootcampId, {
-      include: ["user"],
-    });
+    const boot = await Bootcamp.findByPk(bootcampId);
     console.log(
       `Se ha encontrado el bootcamp ${JSON.stringify(boot, null, 4)}`
     );

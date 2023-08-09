@@ -2,21 +2,18 @@
 const User = require("./user.model");
 const Bootcamp = require("./bootcamp.model");
 
-User.hasMany(Bootcamp, {
-  as: "bootcamp",
-});
 
-Bootcamp.belongsTo(User, {
-  foreignKey: "userId",
-  as: "idUser",
-});
-Bootcamp.hasMany(User, {
-  as: "user",
-});
 
-User.belongsTo(Bootcamp, {
+Bootcamp.belongsToMany(User, {
+  through: "user_bootcamp",
   foreignKey: "bootcampId",
-  as: "idBootcamp",
+  as: "bootcamps"
+});
+
+User.belongsToMany(Bootcamp, {
+  through: "user_bootcamp",
+  foreignKey: "bootcampId",
+  as: "users"
 });
 
 module.exports = {

@@ -1,19 +1,22 @@
 ## Evaluación final modulo 7
 
-PG_USER='me' 
+PG_USER='node_user' 
 
-PG_PASSWORD='password'
+PG_PASSWORD='node_password'
 
 ## Crear usuario me y asignarle un rol
-CREATE ROLE me WITH LOGIN PASSWORD 'password';
+CREATE ROLE node_user WITH LOGIN PASSWORD 'node_password';
 
-ALTER ROLE me CREATEDB;
+ALTER ROLE node_user CREATEDB;
 ## se crea la base de datos con el usuario me
 \q
 
 psql -d postgres -U me
 
 CREATE DATABASE db_bootcamp
+
+## Se crean las tablas
+$ node ./scripts/createTables.js
 
 ## Se insertan datos en tabla bootcamp y user con bulkCreate
 
