@@ -1,14 +1,18 @@
 ## Evaluación final modulo 7
 
 PG_USER='me' 
+
 PG_PASSWORD='password'
 
 ## Crear usuario me y asignarle un rol
 CREATE ROLE me WITH LOGIN PASSWORD 'password';
+
 ALTER ROLE me CREATEDB;
 ## se crea la base de datos con el usuario me
 \q
+
 psql -d postgres -U me
+
 CREATE DATABASE db_bootcamp
 
 ## Se insertan datos en tabla bootcamp y user con bulkCreate
