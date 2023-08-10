@@ -1,3 +1,6 @@
+# Repositorio
+https://github.com/AngelesCahill/sequelize-ev-final-modulo7
+
 ## Evaluación final modulo 7
 
 PG_USER='node_user' 
