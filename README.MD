@@ -3,6 +3,7 @@
 # Repositorio
 https://github.com/AngelesCahill/sequelize-ev-final-modulo7
 
+### Datos pg-user y pg-password
 
 PG_USER='node_user' 
 
