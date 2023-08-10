@@ -3,7 +3,6 @@ const User = require("./user.model");
 const Bootcamp = require("./bootcamp.model");
 
 
-
 Bootcamp.belongsToMany(User, {
   through: "user_bootcamp",
   foreignKey: "bootcampId",
@@ -12,7 +11,7 @@ Bootcamp.belongsToMany(User, {
 
 User.belongsToMany(Bootcamp, {
   through: "user_bootcamp",
-  foreignKey: "bootcampId",
+  foreignKey: "userId",
   as: "users"
 });
 

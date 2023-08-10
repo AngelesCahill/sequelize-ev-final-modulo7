@@ -13,8 +13,8 @@ const {
 const {
   createBootcamp,
   findAllBootcamps,
-  findBootcampById,
-  addUserAtBootcamp,
+  findUserBootcampById,
+  addUserToBootcamp,
 } = require("./app/controllers/bootcamp.controller");
 
 const PORT = process.env.PORT || 3000;
@@ -154,54 +154,45 @@ app.get("/bootcamp/create/:title/:cue/:description", async (req, res) => {
   }
 });
 
-// http://localhost:3000/bootcamp/findBootcamp/1
-app.get("/bootcamp/findBootcamp/:id", async (req, res) => {
-  const id = Number(req.params.id);
-  try {
-    const boot = await findBootcampById(id);
-    if (boot) {
-      res.status(200).json({
-        message: `Bootcamp:  ${boot.title} fue encontrado con éxito`,
-        user: boot,
-      });
-    } else {
-      res.status(500).json({
-        message: `usuario id ${id} no fue encontrado`,
-      });
+// http://localhost:3000/bootcamp/findById/1
+app.get('/bootcamp/findById/:id', async (req, res) => {
+    const id = Number(req.params.id);
+    try {
+        const usuario = await findUserBootcampById(id);
+        if (usuario) {
+            res.status(StatusCodes.OK).json({ 
+                message: `usuario ${usuario.firstname} fue encontrado con éxito`,
+                user: usuario 
+            });
+        } else {
+            res.status(StatusCodes.NOT_FOUND).json({ 
+                message: `usuario id ${id} no fue encontrado`
+            });
+        }
+    } catch (error) {
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error.message });
     }
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
 });
 
-addUserAtBootcamp;
-// http://localhost:3000/addUser/1
+// http://localhost:3000/addUserToBootcamp/idBootcamp/1/idUser/1
 app.get(
-  "/update/id/:id/nombre/:nombre/apellido/:apellido/email/:email",
+  "/addUserToBootcamp/idBootcamp/:idBootcamp/idUser/:idUser",
   async (req, res) => {
-    const id = Number(req.params.id);
-    const firstname = req.params.nombre;
-    const lastname = req.params.apellido;
-    const email = req.params.email;
+    const idBootcamp = Number(req.params.idBootcamp);
+    const idUser = Number(req.params.idUser);
     try {
-      const user = await updateUserById(
-        {
-          firstname,
-          lastname,
-          email,
-        },
-        {
-          where: { id: id }
-        }
-      );
-      res.status(201).json({
-          message: `usuario id ${id} fue actualizado con éxito`
-        });
+      const boot = await addUserToBootcamp(idBootcamp, idUser);
+      res.status(200).json({
+        message: `Se agregó usuario id ${idUser} al proyecto id ${idBootcamp}`,
+        bootcamp: boot,
+      });
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
   }
 );
+
+
 
 
 app.listen(PORT, () => {
