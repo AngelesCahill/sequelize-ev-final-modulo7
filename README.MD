@@ -41,3 +41,39 @@ Executing (default): INSERT INTO "user" ("id","firstname","lastname","email","cr
 
 ## RUTAS USER
 
+### Mostrar todos los usuarios con sus bootcamps
+
+http://localhost:3000/user
+
+### Buscar un usuario por su id
+
+http://localhost:3000/user/findById/1
+
+### Crear un usuario
+
+http://localhost:3000/user/create/Angeles/Cahill/angeles.cahill@gmail.com
+
+### Actualizar un usuario
+
+http://localhost:3000/update/id/5/nombre/Maria de los angeles/apellido/Cahill/email/angeles.cahill@khipu.com
+
+### Borrar un usuario
+
+http://localhost:3000/deleteUserById/4
+
+### Listar todos los bootcamps con sus respectivos usuarios
+
+http://localhost:3000/bootcamps
+
+### Crear un Bootcamp nuevo
+
+http://localhost:3000/bootcamp/create/Front End VueJs/10/Realización de proyecto front end
+
+### Agregar un Usuario a un Bootcamp
+
+http://localhost:3000/addUserToBootcamp/idBootcamp/1/idUser/3
+
+### Buscar un Bootcamp por id
+
+http://localhost:3000/bootcamp/findUserBootcampById/1
+
