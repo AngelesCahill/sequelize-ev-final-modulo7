@@ -6,14 +6,15 @@ const Bootcamp = require("./bootcamp.model");
 Bootcamp.belongsToMany(User, {
   through: "user_bootcamp",
   foreignKey: "bootcampId",
-  as: "bootcamps"
+  as: "users"
 });
 
 User.belongsToMany(Bootcamp, {
   through: "user_bootcamp",
   foreignKey: "userId",
-  as: "users"
+  as: "bootcamps"
 });
+
 
 module.exports = {
   User,

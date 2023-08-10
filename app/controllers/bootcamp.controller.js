@@ -1,15 +1,23 @@
-const {
-  User,
-  Bootcamp
-} = require("../models");
+const { User, Bootcamp } = require("../models");
 
 const findAllBootcamps = async () => {
   try {
-    const bootcamps = await Bootcamp.findAll();
+  const boot = Bootcamp.findAll({
+      include: [
+        {
+          model: User,
+          as: "users",
+          attributes: ["id", "firstname"],
+          through: {
+            attributes: [],
+          },
+        },
+      ],
+    });
     console.log(
-      `Se han encontrado los siguientes bootcamps ${JSON.stringify(bootcamps, null, 4)}`
+      `Se han encontrado los bootcamp ${JSON.stringify(boot, null, 4)}`
     );
-    return bootcamps;
+    return boot;
   } catch (error) {
     console.error(error);
     throw error;
@@ -33,18 +41,20 @@ const createBootcamp = async (bootcamps) => {
 
 const findUserBootcampById = async (bootcampId) => {
   try {
-    const boot = await User.findByPk(bootcampId, {
-      include: [{
-        model: User,
-        as: "users",
-        attributes: ["id", "name"],
-        through: {
-          attributes: [],
+    const boot = await Bootcamp.findByPk(bootcampId, {
+      include: [
+        {
+          model: User,
+          as: "users",
+          attributes: ["id", "firstname"],
+          through: {
+            attributes: [],
+          },
         },
-      }, ],
+      ],
     });
     console.log(
-      `Se ha encontrado el usuario ${JSON.stringify(boot, null, 4)}`
+      `Se ha encontrado el boot ${JSON.stringify(boot, null, 4)}`
     );
     return boot;
   } catch (error) {
@@ -53,16 +63,17 @@ const findUserBootcampById = async (bootcampId) => {
   }
 };
 
-const addUserToBootcamp = async (bootcamp_id, user_id) => {
+
+const addUserToBootcamp = async (bootcampid, userid) => {
   try {
-    const bootcamp = await Bootcamp.findByPk(bootcamp_id);
+    const bootcamp = await Bootcamp.findByPk(bootcampid);
     if (!bootcamp) {
-      console.log(`No se encontró proyecto con id ${bootcamp_id}`);
+      console.log(`No se encontró proyecto con id ${bootcampid}`);
       return null;
     }
-    const usuario = await User.findByPk(user_id);
+    const usuario = await User.findByPk(userid);
     if (!usuario) {
-      console.log(`No se encontró usuario con id ${user_id}`);
+      console.log(`No se encontró usuario con id ${userid}`);
       return null;
     }
     await bootcamp.addUser(usuario);
