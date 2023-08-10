@@ -40,12 +40,12 @@ app.get("/user/findById/:id", async (req, res) => {
   try {
     const usuario = await findUserById(id);
     if (usuario) {
-      res.status(200).json({
+      res.status(302).json({
         message: `usuario ${usuario.firstname} fue encontrado con éxito`,
         user: usuario,
       });
     } else {
-      res.status(500).json({
+      res.status(404).json({
         message: `usuario id ${id} no fue encontrado`,
       });
     }
@@ -65,7 +65,7 @@ app.get("/user/create/:firstname/:lastname/:email", async (req, res) => {
       lastname,
       email,
     });
-    res.status(200).json({
+    res.status(201).json({
       message: `usuario ${usuario.firstname} ${usuario.lastname} fue creado con éxito`,
       user: usuario,
     });
@@ -111,11 +111,11 @@ app.get('/deleteUserById/:id', async (req, res) => {
         const usuario = await deleteUserById({
           where: { id },
         });
-        res.status(201).json({
+        res.status(302).json({
           message: `usuario id ${id} fue borrado con éxito`,
         });
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(404).json({ message: error.message });
     }
 });
 
@@ -143,7 +143,7 @@ app.get("/bootcamp/create/:title/:cue/:description", async (req, res) => {
       cue,
       description,
     });
-    res.status(200).json({
+    res.status(201).json({
       message: `El bootcamp ${boot.title} fue creado con éxito`,
       bootcamp: boot,
     });
@@ -162,12 +162,12 @@ app.get(
     const idUser = Number(req.params.idUser);
     try {
       const boot = await addUserToBootcamp(idBootcamp, idUser);
-      res.status(200).json({
+      res.status(302).json({
         message: `Se agregó usuario id ${idUser} al proyecto id ${idBootcamp}`,
         bootcamp: boot,
       });
     } catch (error) {
-      res.status(500).json({ message: error.message });
+      res.status(404).json({ message: error.message });
     }
   }
 );
@@ -178,12 +178,12 @@ app.get("/bootcamp/findUserBootcampById/:id", async (req, res) => {
   try {
     const boot = await findUserBootcampById(id);
     if (boot) {
-      res.status(200).json({
+      res.status(302).json({
         message: `Bootcamp ${boot.id} fue encontrado con éxito`,
         bootcamp: boot,
       });
     } else {
-      res.status(500).json({
+      res.status(404).json({
         message: `Bootcamp id ${id} no fue encontrado`,
       });
     }

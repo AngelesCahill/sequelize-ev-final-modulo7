@@ -1,7 +1,8 @@
+# Evaluación final modulo 7
+
 # Repositorio
 https://github.com/AngelesCahill/sequelize-ev-final-modulo7
 
-## Evaluación final modulo 7
 
 PG_USER='node_user' 
 
@@ -24,6 +25,7 @@ $ node ./scripts/createTables.js
 ## Se insertan datos en tabla bootcamp y user con bulkCreate
 
 $ node ./scripts/insertBootcamps.js
+
 Executing (default): INSERT INTO "bootcamp" ("id","title","cue","
 description","created_at","updated_at") VALUES (DEFAULT,'Introduc
 iendo El Bootcamp De React','10','React es la librería más usada 
@@ -40,6 +42,7 @@ mientas de Big Data, e intégralos con modelos avanzados','2023-08
 ING "id","title","cue","description","created_at","updated_at"; 
 
 $ node ./scripts/insertUsers.js
+
 Executing (default): INSERT INTO "user" ("id","firstname","lastname","email","creaeated_at","updated_at") VALUES (DEFAULT,'Mateo','Díaz','mateo.diaz@correo.com','232023-08-08 13:34:33.148 +00:00','2023-08-08 13:34:33.148 +00:00'),(DEFAULT,'Sant',iago','Mejías','santiago.mejias@correo.com','2023-08-08 13:34:33.148 +00:00','200823-08-08 13:34:33.148 +00:00'),(DEFAULT,'Lucas','Rojas','lucas.rojas@correo.com'8-,'2023-08-08 13:34:33.148 +00:00','2023-08-08 13:34:33.148 +00:00'),(DEFAULT,'Farncundo','Fernandez','facundo.fernandez@correo.com','2023-08-08 13:34:33.148 +00:0080','2023-08-08 13:34:33.148 +00:00') RETURNING "id","firstname","lastname","emai",l","created_at","updated_at";
 
 ## RUTAS USER
@@ -48,7 +51,7 @@ Executing (default): INSERT INTO "user" ("id","firstname","lastname","email","cr
 
 http://localhost:3000/user
 
-### Buscar un usuario por su id
+### Buscar un usuario por su id con su(s) bootcamp(s)
 
 http://localhost:3000/user/findById/1
 
@@ -76,7 +79,7 @@ http://localhost:3000/bootcamp/create/Front End VueJs/10/Realización de proyect
 
 http://localhost:3000/addUserToBootcamp/idBootcamp/1/idUser/3
 
-### Buscar un Bootcamp por id
+### Buscar un Bootcamp por id con su(s) usuario(s)
 
 http://localhost:3000/bootcamp/findUserBootcampById/1
 
