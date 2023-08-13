@@ -3,7 +3,7 @@ const { User, Bootcamp } = require("../models");
 
 const findAllUsers = async () => {
   try {
-    const usuarios = User.findAll( {
+    const usuarios = await User.findAll( {
       include: [
         {
           model: Bootcamp,

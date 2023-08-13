@@ -2,7 +2,7 @@ const { User, Bootcamp } = require("../models");
 
 const findAllBootcamps = async () => {
   try {
-  const boot = Bootcamp.findAll({
+  const boot = await Bootcamp.findAll({
       include: [
         {
           model: User,
