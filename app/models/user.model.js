@@ -43,22 +43,6 @@ const User = sequelize.define(
                 is: /\S+@\S+\.\S+/,
             },
         },
-        password: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                min: {
-                    args: [8],
-                    msg: "Se requiere un mínimo de 8 caracteres para la contraseña (password)",
-                },
-                notNull: {
-                    msg: "Password es requerido",
-                },
-                notEmpty: {
-                    msg: "Debe ingresar un password",
-                },
-            },
-        },
     }, {
         timestamps: true,
         tableName: "user",
